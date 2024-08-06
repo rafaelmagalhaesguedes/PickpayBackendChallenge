@@ -5,13 +5,6 @@
 
 Simplified PickPay is a Spring Boot application that provides RESTful APIs for user and transaction management. Users can create accounts, retrieve user details, and perform transactions.
 
-## Table of Contents
-- [Project Description](#project-description)
-- [Setup Instructions](#setup-instructions)
-- [Usage](#usage)
-- [Testing](#testing)
-- [Technologies Used](#technologies-used)
-
 ## Setup Instructions
 
 ### 1. Clone the Repository
