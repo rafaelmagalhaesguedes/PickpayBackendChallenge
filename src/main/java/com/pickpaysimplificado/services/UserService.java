@@ -14,34 +14,32 @@ import java.util.UUID;
 @Service
 public class UserService {
 
-    private final UserRepository userRepository;
+    private final UserRepository repository;
 
     @Autowired
     public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
+        this.repository = userRepository;
     }
 
     @Transactional
     public User createUser(User user) throws ConflictException {
-        User userExists = userRepository.findUserByEmail(user.getEmail());
-        if (userExists != null) {
-            throw new ConflictException("User email already exists.");
-        }
-
-        User documentExists = userRepository.findUserByDocument(user.getDocument());
-        if (documentExists != null) {
+        var documentExists = repository.findUserByDocument(user.getDocument());
+        if (documentExists != null)
             throw new ConflictException("User with this document already exists.");
-        }
 
-        return userRepository.save(user);
+        var emailExists = repository.findUserByEmail(user.getEmail());
+        if (emailExists != null)
+            throw new ConflictException("User email already exists.");
+
+        return repository.save(user);
     }
 
     public User findUserById(UUID id) throws NotFoundException {
-        return userRepository.findById(id)
+        return repository.findById(id)
                 .orElseThrow(NotFoundException::new);
     }
 
     public List<User> findAllUsers() {
-        return userRepository.findAll();
+        return repository.findAll();
     }
 }
