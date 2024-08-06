@@ -2,6 +2,9 @@ package com.pickpaysimplificado.controller;
 
 import com.pickpaysimplificado.dto.TransactionCreationDTO;
 import com.pickpaysimplificado.dto.TransactionDTO;
+import com.pickpaysimplificado.exceptions.FailedException;
+import com.pickpaysimplificado.exceptions.NotFoundException;
+import com.pickpaysimplificado.exceptions.UnauthorizedException;
 import com.pickpaysimplificado.services.TransactionService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +24,8 @@ public class TransactionController {
     }
 
     @PostMapping
-    public TransactionDTO createTransaction(@RequestBody @Valid TransactionCreationDTO transaction) throws Exception {
+    public TransactionDTO createTransaction(@RequestBody @Valid TransactionCreationDTO transaction)
+            throws FailedException, UnauthorizedException, NotFoundException {
         return TransactionDTO.fromEntity(
                 transactionService.createTransaction(transaction)
         );
