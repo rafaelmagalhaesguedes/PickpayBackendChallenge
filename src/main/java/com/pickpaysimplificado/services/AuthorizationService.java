@@ -1,6 +1,5 @@
 package com.pickpaysimplificado.services;
 
-import com.pickpaysimplificado.repositories.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +24,7 @@ public class AuthorizationService {
     public boolean authorizeTransaction() {
         ResponseEntity<Map> authorizationResponse = restTemplate.getForEntity(AUTHORIZATION_URL, Map.class);
 
-        return Optional.ofNullable(authorizationResponse)
+        return Optional.of(authorizationResponse)
                 .filter(response -> response.getStatusCode() == HttpStatus.OK)
                 .map(ResponseEntity::getBody)
                 .filter(body -> "success".equalsIgnoreCase((String) body.get("status")))

@@ -1,4 +1,4 @@
-package com.pickpaysimplificado.config;
+package com.pickpaysimplificado.database;
 
 import com.pickpaysimplificado.entities.User;
 import com.pickpaysimplificado.enums.UserType;
@@ -14,12 +14,12 @@ import java.util.List;
 import java.util.UUID;
 
 @Component
-public class SeederConfig {
+public class UserSeeder {
 
     private final UserRepository userRepository;
 
     @Autowired
-    public SeederConfig(UserRepository userRepository) {
+    public UserSeeder(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -31,8 +31,8 @@ public class SeederConfig {
 
     private void seedUsers() {
         List<User> users = Arrays.asList(
-                new User(UUID.randomUUID(), "User", "Sender", "12000000000", "test01@email.com", "password", new BigDecimal("10.00"), UserType.COMMON),
-                new User(UUID.randomUUID(), "User", "Receiver", "12300000000", "test02@email.com", "password", new BigDecimal("10.00"), UserType.MERCHANT)
+                new User(UUID.randomUUID(), "Common", "Sender", "86637514004", "test01@email.com", "password", new BigDecimal("10.00"), UserType.COMMON),
+                new User(UUID.randomUUID(), "Merchant", "Receiver", "04943133070", "test02@email.com", "password", new BigDecimal("10.00"), UserType.MERCHANT)
            );
         userRepository.saveAll(users);
     }

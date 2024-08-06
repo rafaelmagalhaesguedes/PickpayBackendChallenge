@@ -1,8 +1,10 @@
 package com.pickpaysimplificado.services;
 
 import com.pickpaysimplificado.entities.User;
+import com.pickpaysimplificado.exceptions.ConflictException;
 import com.pickpaysimplificado.exceptions.NotFoundException;
 import com.pickpaysimplificado.repositories.UserRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,10 +21,17 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User createUser(User user) throws NotFoundException {
+    @Transactional
+    public User createUser(User user) throws ConflictException {
         User userExists = userRepository.findUserByEmail(user.getEmail());
+        if (userExists != null) {
+            throw new ConflictException("User email already exists.");
+        }
 
-        if (userExists != null) throw new NotFoundException();
+        User documentExists = userRepository.findUserByDocument(user.getDocument());
+        if (documentExists != null) {
+            throw new ConflictException("User with this document already exists.");
+        }
 
         return userRepository.save(user);
     }

@@ -3,8 +3,10 @@ package com.pickpaysimplificado.controller;
 import com.pickpaysimplificado.dto.UserCreationDTO;
 import com.pickpaysimplificado.dto.UserDTO;
 import com.pickpaysimplificado.entities.User;
+import com.pickpaysimplificado.exceptions.ConflictException;
 import com.pickpaysimplificado.exceptions.NotFoundException;
 import com.pickpaysimplificado.services.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +24,7 @@ public class UserController {
     }
 
     @PostMapping
-    public UserDTO createUser(@RequestBody UserCreationDTO userCreationDTO) throws NotFoundException {
+    public UserDTO createUser(@RequestBody @Valid UserCreationDTO userCreationDTO) throws ConflictException {
         return UserDTO.fromEntity(
                 userService.createUser(userCreationDTO.toEntity())
         );
