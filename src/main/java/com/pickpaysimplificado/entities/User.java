@@ -53,9 +53,6 @@ public class User {
         this.userType = userType;
     }
 
-    public User(UUID id, String user, String lastName, String number, String mail, String password, int i, UserType userType) {
-    }
-
     public UUID getId() {
         return id;
     }
