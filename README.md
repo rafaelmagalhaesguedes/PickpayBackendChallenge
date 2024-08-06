@@ -79,7 +79,7 @@ The application will start on http://localhost:8080.
         "lastName": "Doe",
         "document": "06067296071",
         "email": "john.doe@example.com",
-        "balance": 0,
+        "balance": 0.00,
         "userType": "COMMON"
       },
       "receiver": {
