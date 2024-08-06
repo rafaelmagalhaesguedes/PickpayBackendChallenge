@@ -1,7 +1,9 @@
 # PickPay Backend Challenge Simplified
-
-<img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white" />
-<img src="https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white" />
+<div>
+  <img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white" />
+  <img src="https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white" />
+</div>
+<br />
 
 Simplified PickPay is a Spring Boot application that provides RESTful APIs for user and transaction management. Users can create accounts, retrieve user details, and perform transactions.
 
